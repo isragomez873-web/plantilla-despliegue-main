@@ -1,0 +1,37 @@
+{
+  "name": "to-do-list",
+  "short_name": "to-do list",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#9333ea",
+  "orientation": "portrait-primary",
+  "description": "Aplicacion de lista de tareas para organizar tu dia a dia",
+  "icons": [
+    {
+      "src": "./img/hadestdl.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./img/hadestdl.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./img/hadestdl512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./img/hadestdl512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["productivity", "utilities"]
+}
