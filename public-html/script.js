@@ -1,82 +1,72 @@
-function guardarTareas() {
-    let tareas = [];
+async function agregarTarea() {
 
-    document.querySelectorAll("#listaTareas li").forEach(li => {
-        tareas.push(li.firstChild.textContent.trim());
-    });
+    let descripcion = document.getElementById("nuevaTarea").value.trim();
 
-    localStorage.setItem("tareas", JSON.stringify(tareas));
-}
-
-function agregarTarea() {
-
-    // Obtener el texto de la tarea
-    let nuevaTareaTexto = document.getElementById("nuevaTarea").value.trim();
-
-    // Validar que no esté vacío
-    if (nuevaTareaTexto === "") {
-        alert("Por favor, ingresa una tarea.");
+    if (descripcion === "") {
+        alert("Por favor, ingresa una tarea");
         return;
     }
 
-    // Crear elemento de la lista
-    let nuevaTarea = document.createElement("li");
-    nuevaTarea.textContent = nuevaTareaTexto + " ";
+    let datos = new FormData();
+    datos.append("descripcion", descripcion);
 
-    // Crear botón eliminar
-    let botonEliminar = document.createElement("button");
-    botonEliminar.textContent = "Eliminar";
+    await fetch("guardar_tarea.php", {
+        method: "POST",
+        body: datos
+    });
 
-    botonEliminar.onclick = function () {
-        nuevaTarea.remove();
-        guardarTareas();
-    };
-
-    // Agregar botón a la tarea
-    nuevaTarea.appendChild(botonEliminar);
-
-    // Agregar tarea a la lista
-    document.getElementById("listaTareas").appendChild(nuevaTarea);
-
-    // Guardar tareas
-    guardarTareas();
-
-    // Limpiar cuadro de texto
     document.getElementById("nuevaTarea").value = "";
+
+    cargarTareas();
 }
 
-function cargarTareas() {
+async function cargarTareas() {
 
-    // Obtener tareas del localStorage
-    let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
+    let respuesta = await fetch("obtener_tareas.php");
 
-    // Recorrer cada tarea almacenada
-    tareas.forEach(texto => {
+    let tareas = await respuesta.json();
 
-        let nuevaTarea = document.createElement("li");
-        nuevaTarea.textContent = texto + " ";
+    let lista = document.getElementById("listaTareas");
+
+    lista.innerHTML = "";
+
+    tareas.forEach(tarea => {
+
+        let li = document.createElement("li");
+
+        li.textContent = tarea.descripcion + " ";
 
         let botonEliminar = document.createElement("button");
+
         botonEliminar.textContent = "Eliminar";
 
-        botonEliminar.onclick = function () {
-            nuevaTarea.remove();
-            guardarTareas();
-        };
+        botonEliminar.onclick = () => eliminarTarea(tarea.id);
 
-        nuevaTarea.appendChild(botonEliminar);
+        li.appendChild(botonEliminar);
 
-        document.getElementById("listaTareas").appendChild(nuevaTarea);
+        lista.appendChild(li);
     });
 }
 
-// Cargar tareas al abrir la página
+async function eliminarTarea(id) {
+
+    let datos = new FormData();
+
+    datos.append("id", id);
+
+    await fetch("eliminar_tarea.php", {
+        method: "POST",
+        body: datos
+    });
+
+    cargarTareas();
+}
+
 document.addEventListener("DOMContentLoaded", cargarTareas);
 
-// Registrar Service Worker para la PWA
 if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./service-worker.js")
+        navigator.serviceWorker.register("../service-worker.js")
             .then(registro => {
                 console.log("Service Worker registrado:", registro);
             })
