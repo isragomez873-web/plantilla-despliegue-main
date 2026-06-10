@@ -19,9 +19,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["usuario_id"] = $usuario["id"];
         $_SESSION["nombre"] = $usuario["nombre"];
 
-        echo "Inicio de sesión exitoso";
+        header("Location: index.php");
+        exit;
+
     } else {
-        echo "Correo o contraseña incorrectos";
+        $error = "Correo o contraseña incorrectos";
     }
 }
 ?>
@@ -36,15 +38,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <h2>Iniciar Sesión</h2>
 
+<?php
+if (isset($error)) {
+    echo "<p>$error</p>";
+}
+?>
+
 <form method="POST">
-    <input type="email" name="correo" placeholder="Correo" required>
+
+    <input type="email"
+           name="correo"
+           placeholder="Correo"
+           required>
+
     <br><br>
 
-    <input type="password" name="password" placeholder="Contraseña" required>
+    <input type="password"
+           name="password"
+           placeholder="Contraseña"
+           required>
+
     <br><br>
 
-    <button type="submit">Ingresar</button>
+    <button type="submit">
+        Ingresar
+    </button>
+
 </form>
+
+<br>
+
+<a href="registro.php">
+    Regístrate
+</a>
 
 </body>
 </html>
