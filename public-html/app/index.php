@@ -15,8 +15,8 @@ if (!isset($_SESSION["usuario_id"])) {
     <meta name="theme-color" content="#9333ea">
     <title>To-do List</title>
 
-    <link rel="stylesheet" href="styles.css">
-    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="/proyecto/styles.css">
+    <script src="/proyecto/script.js"></script>
 </head>
 
 <body>
@@ -41,7 +41,7 @@ if (!isset($_SESSION["usuario_id"])) {
 
     </div>
 
-    <script src="script.js"></script>
+    <link rel="manifest" href="/proyecto/manifest.json">
 
 </body>
 </html>
