@@ -25,7 +25,7 @@ if (!isset($_SESSION["usuario_id"])) {
 
         <h1>Lista de Tareas</h1>
 
-        <p>Bienvenido, <strong><?php echo $_SESSION["nombre"]; ?></strong></p>
+        <p> Hola, <strong><?php echo $_SESSION["nombre"]; ?></strong></p>
 
         <input type="text" id="nuevaTarea" placeholder="Ingresa nueva tarea">
 
