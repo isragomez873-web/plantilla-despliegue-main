@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="form-contenedor">
 
-```
+
 <h2>Registro de Usuario</h2>
 
 <?php
@@ -78,7 +78,7 @@ if (isset($error)) {
 <a href="login.php">
     ¿Ya tienes cuenta? Inicia sesión
 </a>
-```
+
 
 </div>
 
