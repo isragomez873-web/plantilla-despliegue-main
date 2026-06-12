@@ -18,11 +18,7 @@ if (!isset($_SESSION["usuario_id"])) {
     <link rel="stylesheet" href="/proyecto/styles.css">
     <script src="/proyecto/script.js"></script>
 </head>
-<p>Prueba CSS</p>
 
-<script>
-alert("JavaScript funciona");
-</script>
 <body>
 
     <div class="contenedor">
