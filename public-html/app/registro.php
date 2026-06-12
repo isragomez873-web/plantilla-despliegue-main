@@ -14,35 +14,73 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conexion->prepare($sql);
 
     if ($stmt->execute([$nombre, $correo, $password])) {
-        echo "Usuario registrado correctamente";
+        header("Location: login.php");
+        exit;
     } else {
-        echo "Error al registrar usuario";
+        $error = "Error al registrar usuario";
     }
 }
 ?>
 
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Registro</title>
+
+```
+<link rel="stylesheet" href="styles.css">
+```
+
 </head>
 <body>
 
+<div class="form-contenedor">
+
+```
 <h2>Registro de Usuario</h2>
 
+<?php
+if (isset($error)) {
+    echo "<p class='error'>$error</p>";
+}
+?>
+
 <form method="POST">
-    <input type="text" name="nombre" placeholder="Nombre" required>
-    <br><br>
 
-    <input type="email" name="correo" placeholder="Correo" required>
-    <br><br>
+    <input
+        type="text"
+        name="nombre"
+        placeholder="Nombre"
+        required>
 
-    <input type="password" name="password" placeholder="Contraseña" required>
-    <br><br>
+    <input
+        type="email"
+        name="correo"
+        placeholder="Correo"
+        required>
 
-    <button type="submit">Registrarse</button>
+    <input
+        type="password"
+        name="password"
+        placeholder="Contraseña"
+        required>
+
+    <button type="submit">
+        Registrarse
+    </button>
+
 </form>
+
+<br>
+
+<a href="login.php">
+    ¿Ya tienes cuenta? Inicia sesión
+</a>
+```
+
+</div>
 
 </body>
 </html>
