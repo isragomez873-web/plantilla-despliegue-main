@@ -17,6 +17,7 @@ if (!isset($_SESSION["usuario_id"])) {
 
     <link rel="stylesheet" href="/proyecto/styles.css">
     <script src="/proyecto/script.js"></script>
+    <link rel="manifest" href="/proyecto/manifest.json">
 </head>
 
 <body>
@@ -25,7 +26,7 @@ if (!isset($_SESSION["usuario_id"])) {
 
         <h1>Lista de Tareas</h1>
 
-        <p> Hola, <strong><?php echo $_SESSION["nombre"]; ?></strong></p>
+        <p> Hola, <strong><?php echo htmlspecialchars($_SESSION["nombre"]); ?></strong></p>
 
         <input type="text" id="nuevaTarea" placeholder="Ingresa nueva tarea">
 
@@ -41,7 +42,7 @@ if (!isset($_SESSION["usuario_id"])) {
 
     </div>
 
-    <link rel="manifest" href="/proyecto/manifest.json">
+    
 
 </body>
 </html>
