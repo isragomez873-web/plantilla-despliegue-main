@@ -1,11 +1,11 @@
-const cacheName = 'to-do-list-cache-v2';
+const cacheName = 'to-do-list-cache-v3';
 
 // Rutas relativas a donde está el SW
 const base = self.location.pathname.replace('/service-worker.js', '');
 
 const archivos = [
   `${base}/`,
-  `${base}/index.html`,
+  `${base}/index.php`,
   `${base}/styles.css`,
   `${base}/script.js`,
   `${base}/manifest.json`,
